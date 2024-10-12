@@ -49,33 +49,35 @@ let getLoginPageGet = async (req, res) => {
   res.render("log_in");
 };
 
-let loginPagePost = [
+let logInPost = [
   asyncHandler(async (req, res, next) => {
-    passport.authenticate("local", (err, user, info) => {
-      if (!user) {
-        // Handle failed authentication
-        let logInErrorMessage = [
-          {
-            type: "field",
-            value: "",
-            msg: "Username or Password is incorrect.",
-            path: "usernamePassword",
-            location: "body",
-          },
-        ];
+    const { username, password } = req.body;
 
-        return res.status(400).render("log_in", {
-          errors: logInErrorMessage,
-        });
-      }
+    const user = await prisma.user.findUnique({
+      where: { username },
+    });
 
-      // Successful authentication
-      req.logIn(user, async (err) => {
-        let hour = 3600000;
-        req.session.cookie.originalMaxAge = 14 * 24 * hour;
-        res.redirect("/");
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      let logInErrorMessage = [
+        {
+          type: "field",
+          value: "",
+          msg: "Username or Password is incorrect.",
+          path: "usernamePassword",
+          location: "body",
+        },
+      ];
+
+      return res.status(400).render("log_in", {
+        errors: logInErrorMessage,
       });
-    })(req, res, next);
+    }
+
+    // Set the user ID in session
+    req.session.userId = user.id;
+    req.session.userName = user.username;
+
+    res.redirect("/");
   }),
 ];
 
@@ -92,6 +94,6 @@ module.exports = {
   getSignUpPageGet,
   signUpPost,
   getLoginPageGet,
-  loginPagePost,
+  logInPost,
   logOutGet,
 };
