@@ -82,12 +82,9 @@ let logInPost = [
 ];
 
 let logOutGet = (req, res, next) => {
-  req.logout((err) => {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/");
-  });
+  delete req.session.userId;
+  delete req.session.userName;
+  res.redirect("/");
 };
 
 module.exports = {
