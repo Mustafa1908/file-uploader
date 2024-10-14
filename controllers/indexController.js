@@ -10,17 +10,22 @@ let getFormUploadPageGet = async (req, res) => {
 };
 
 let formUploadPost = async (req, res) => {
-  console.log(req.file);
   res.redirect("/");
 };
 
 let getLibraryPage = async (req, res) => {
   const userFolders = await prisma.folder.findMany({
     where: {
-      userId: 5,
+      userId: req.session.userId,
+    },
+    orderBy: {
+      id: "asc",
     },
   });
-  res.render("library", { userLibrary: userFolders });
+  res.render("library", {
+    userLibrary: userFolders,
+    userId: req.session.userId,
+  });
 };
 
 let createFolder = async (req, res) => {
@@ -43,10 +48,37 @@ let createFolder = async (req, res) => {
   }
 };
 
+let getUpdateFolderNamePage = async (req, res) => {
+  res.render("update_folder_name", { urlParams: req.params });
+};
+
+let updateFolderName = async (req, res) => {
+  const folderId = await prisma.folder.findFirst({
+    where: {
+      userId: req.params.userId,
+      folderName: req.params.folderName,
+    },
+  });
+
+  const updateFolderName = await prisma.folder.update({
+    where: {
+      id: folderId.id,
+      folderName: req.params.folderName,
+    },
+    data: {
+      folderName: req.body.updatedFolder,
+    },
+  });
+
+  res.redirect("/library");
+};
+
 module.exports = {
   getHomePageGet,
   getFormUploadPageGet,
   formUploadPost,
   getLibraryPage,
   createFolder,
+  getUpdateFolderNamePage,
+  updateFolderName,
 };
