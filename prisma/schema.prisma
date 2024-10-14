@@ -11,7 +11,7 @@ model User {
 
 model Folder {
   id     Int     @id @default(autoincrement())
-  folderName    String
+  folderName    String @unique
   user User @relation(fields: [userId], references: [id])
   userId  Int
 }
