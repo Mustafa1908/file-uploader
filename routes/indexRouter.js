@@ -21,5 +21,10 @@ router.post(
   "/update_folder_name/:id/:folderName",
   indexController.updateFolderName
 );
+router.get(
+  "/delete_folder/:id/:folderName",
+  indexController.getDeleteFolderPage
+);
+router.post("/delete_folder/:id/:folderName", indexController.deleteFolder);
 
 module.exports = router;
