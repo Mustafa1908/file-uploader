@@ -1,7 +1,6 @@
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
-const passport = require("passport");
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
@@ -81,7 +80,7 @@ let logInPost = [
   }),
 ];
 
-let logOutGet = (req, res, next) => {
+let logOutGet = async (req, res) => {
   delete req.session.userId;
   delete req.session.userName;
   res.redirect("/");
