@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="/">Home</a>
+    <form
+      action="/update_folder_name/<%= urlParams.id %>/<%= urlParams.folderName %>"
+      method="POST"
+    >
+      <%- include('partials/errors.ejs') %>
+      <h1 class="formHeader">Update</h1>
+      <label for="updatedFolder">Updated Name: </label>
+      <input
+        type="text"
+        name="updatedFolder"
+        id="updatedFolder"
+        value="<%= urlParams.folderName %>"
+        required
+      />
+      <button class="submitButton" type="submit">Update</button>
+    </form>
+  </body>
+</html>
