@@ -13,5 +13,13 @@ router.post(
 );
 router.get("/library", indexController.getLibraryPage);
 router.post("/library", indexController.createFolder);
+router.get(
+  "/update_folder_name/:id/:folderName",
+  indexController.getUpdateFolderNamePage
+);
+router.post(
+  "/update_folder_name/:id/:folderName",
+  indexController.updateFolderName
+);
 
 module.exports = router;
