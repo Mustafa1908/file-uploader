@@ -73,6 +73,21 @@ let updateFolderName = async (req, res) => {
   res.redirect("/library");
 };
 
+let getDeleteFolderPage = async (req, res) => {
+  res.render("delete_folder", { urlParams: req.params });
+};
+
+let deleteFolder = async (req, res) => {
+  console.log(req.params.folderName);
+  const deleteFolder = await prisma.folder.delete({
+    where: {
+      folderName: req.params.folderName,
+    },
+  });
+
+  res.redirect("/library");
+};
+
 module.exports = {
   getHomePageGet,
   getFormUploadPageGet,
@@ -81,4 +96,6 @@ module.exports = {
   createFolder,
   getUpdateFolderNamePage,
   updateFolderName,
+  getDeleteFolderPage,
+  deleteFolder,
 };
