@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="/">Home</a>
+    <form
+      action="/delete_folder/<%= urlParams.id %>/<%= urlParams.folderName %>"
+      method="POST"
+    >
+      <%- include('partials/errors.ejs') %>
+      <button class="submitButton" type="submit">Delete Folder</button>
+    </form>
+    <p>Are you sure you wanna delete <%= urlParams.folderName %> folder</p>
+    <p>There is files in it</p>
+  </body>
+</html>
