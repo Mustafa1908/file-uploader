@@ -6,8 +6,13 @@
     <title>Document</title>
   </head>
   <body>
-    <a href="/">Home</a>
-    <p><%= urlParams.folderName %></p>
-    <a href="form_upload">Upload A File</a>
+    <a href="/">Home</a><br />
+    <% if(folderFiles) { %> <% for (let i = 0; i < folderFiles.length; i++) { %>
+    <a
+      href="/library/<%= urlParams.folderName %>/<%= folderFiles[i].fileName %>"
+      ><%= folderFiles[i].fileName %></a
+    ><br />
+    <% } } %>
+    <a href="/form_upload">Upload A File</a>
   </body>
 </html>
