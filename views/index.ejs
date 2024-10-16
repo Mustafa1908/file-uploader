@@ -6,7 +6,15 @@
     <title>Home Page</title>
   </head>
   <body>
+    <% if(user) { %>
+    <p>Welcome back <%= user %>!</p>
+    <a href="log_out">Log Out</a>
+    <a href="library">Library</a>
+    <% } else {%>
     <p>Welcome to the home page</p>
     <a href="sign_up">Sign Up</a>
+    <a href="log_in">Log In</a>
+    <a href="library">Library</a>
+    <% } %>
   </body>
 </html>
