@@ -11,6 +11,13 @@
     <p><%= fileData.fileName %></p>
     <p><%= fileData.fileSize %> kbit</p>
     <p><%= fileData.createdAt %></p>
-    <a href="path/to/yourfile.pdf" download>Download File</a>
+    <form
+      action="/library/<%= urlParams.folderName %>/<%= fileData.fileName %>"
+      method="POST"
+    >
+      <%- include('partials/errors.ejs') %>
+      <h1 class="formHeader">Update</h1>
+      <button class="submitButton" type="submit">Update</button>
+    </form>
   </body>
 </html>
