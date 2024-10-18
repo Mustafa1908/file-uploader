@@ -15,6 +15,7 @@ router.get("/library", indexController.getLibraryPage);
 router.post("/library", indexController.createFolder);
 router.get("/library/:folderName", indexController.getFolderPage);
 router.get("/library/:folderName/:fileName", indexController.getFilePage);
+router.post("/library/:folderName/:fileName", indexController.downloadFile);
 router.get(
   "/update_folder_name/:id/:folderName",
   indexController.getUpdateFolderNamePage
