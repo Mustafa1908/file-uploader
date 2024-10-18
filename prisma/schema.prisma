@@ -22,6 +22,7 @@ model File {
   fileName    String @unique
   hashedFile String @default("")
   fileSize Int
+  fileUrl String @default("https://siecledigital.fr/wp-content/uploads/2017/05/Rickroll.jpg")
   createdAt DateTime @default(now()) 
   folder Folder @relation(fields: [folderId], references: [id])
   folderId  Int
