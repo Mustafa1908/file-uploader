@@ -37,7 +37,7 @@ let signUpPost = [
             password: hashedPassword, // Ensure to hash passwords in production!
           },
         });
-        res.redirect("/");
+        res.redirect("/log_in");
       } catch (error) {
         console.error(error);
       }
