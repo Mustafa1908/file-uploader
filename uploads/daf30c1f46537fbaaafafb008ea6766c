@@ -1,0 +1,79 @@
+:root {
+  --step--2: clamp(0.7813rem, 0.7776rem + 0.0181vw, 0.8rem);
+  --step--1: clamp(0.9375rem, 0.9255rem + 0.0602vw, 1rem);
+  --step-0: clamp(1.125rem, 1.1009rem + 0.1205vw, 1.25rem);
+  --step-1: clamp(1.35rem, 1.309rem + 0.2048vw, 1.5625rem);
+  --step-2: clamp(1.62rem, 1.5558rem + 0.3211vw, 1.9531rem);
+  --step-3: clamp(1.944rem, 1.8481rem + 0.4794vw, 2.4414rem);
+  --step-4: clamp(2.3328rem, 2.1942rem + 0.693vw, 3.0518rem);
+  --step-5: clamp(2.7994rem, 2.6036rem + 0.9786vw, 3.8147rem);
+}
+
+form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  margin-right: auto;
+  margin-left: auto;
+  background: #f4f7f8;
+  max-width: 35rem;
+  min-height: 30rem;
+  padding-top: 1rem;
+  padding: 1rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  margin-top: 3rem;
+  border-radius: 1rem;
+}
+
+.videogameGenresContainer {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  width: 96%;
+}
+
+.videogameGenreText {
+  padding-top: 2rem;
+}
+
+.videogameGenreContainer {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid blue;
+  height: 2.5rem;
+  width: 100%;
+}
+
+.videogameGenre {
+  border: 3px solid red;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: flex-end;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.videogameGenreCheckbox {
+  width: 0.9rem;
+  margin-left: 0.5rem;
+}
+
+.submitButton:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+@media (max-width: 434px) {
+  form {
+    width: 90%;
+  }
+}
+
+@media (min-width: 435px) and (max-width: 584px) {
+  form {
+    max-width: 90%;
+  }
+}
